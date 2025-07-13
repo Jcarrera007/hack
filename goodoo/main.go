@@ -5,9 +5,11 @@ import (
 	"os"
 	"time"
 
+	"goodoo/database"
 	"goodoo/handlers"
 	"goodoo/http"
 	"goodoo/logging"
+	"goodoo/models"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -21,6 +23,21 @@ func main() {
 
 	logger := logging.GetLogger("goodoo.main")
 	logger.Info("Starting Goodoo application")
+
+	// Initialize database
+	dbName := os.Getenv("GOODOO_DEFAULT_DB")
+	if dbName == "" {
+		dbName = "apexive-hackaton"
+	}
+	
+	logger.Info("Setting up database: %s", dbName)
+	if err := database.QuickSetup(dbName, &models.User{}); err != nil {
+		logger.Critical("Failed to setup database: %v", err)
+		panic(err)
+	}
+
+	// Create default admin user if not exists
+	initDefaultUser(dbName, logger)
 
 	// Initialize session store
 	sessionDir := os.Getenv("GOODOO_SESSION_DIR")
@@ -37,7 +54,7 @@ func main() {
 	// Create request configuration
 	requestConfig := &http.RequestConfig{
 		SessionStore:      sessionStore,
-		DefaultDBName:     os.Getenv("GOODOO_DEFAULT_DB"),
+		DefaultDBName:     dbName,
 		SessionCookieName: "goodoo_session",
 		Logger:            logger,
 	}
@@ -73,6 +90,7 @@ func main() {
 	// Public routes (no authentication required)
 	public := e.Group("")
 	public.GET("/", handlers.IndexHandler)
+	public.GET("/login", handlers.LoginPageHandler)
 	public.GET("/health", healthHandler.Health)
 	public.POST("/auth/login", authHandler.Login)
 	public.GET("/db/list", dbHandler.ListDatabases)
@@ -109,5 +127,29 @@ func main() {
 
 	if err := e.Start(":" + port); err != nil {
 		logger.Critical("Server failed to start: %v", err)
+	}
+}
+
+func initDefaultUser(dbName string, logger *logging.Logger) {
+	db, err := database.GetDatabase(dbName)
+	if err != nil {
+		logger.Error("Failed to get database for user initialization: %v", err)
+		return
+	}
+
+	// Check if admin user exists
+	var count int64
+	db.Model(&models.User{}).Where("login = ?", "admin").Count(&count)
+	
+	if count == 0 {
+		logger.Info("Creating default admin user")
+		_, err := models.CreateUser(db, "admin", "Administrator", "admin@example.com", "admin")
+		if err != nil {
+			logger.Error("Failed to create default admin user: %v", err)
+		} else {
+			logger.Info("Default admin user created successfully (login: admin, password: admin)")
+		}
+	} else {
+		logger.Info("Admin user already exists")
 	}
 }

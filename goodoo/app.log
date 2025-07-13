@@ -1,0 +1,189 @@
+2025-07-13 13:22:25,562 29300 INFO ? goodoo.main: Starting Goodoo application - - -
+2025-07-13 13:22:25,562 29300 INFO ? goodoo.main: Setting up database: apexive-hackaton - - -
+
+2025/07/13 13:22:25 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[3.676ms] [34;1m[rows:1][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND table_type = 'BASE TABLE'
+
+2025/07/13 13:22:25 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[0.623ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
+
+2025/07/13 13:22:25 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[9.071ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'apexive-hackaton' AND table_schema = CURRENT_SCHEMA() AND table_name = 'res_users'
+
+2025/07/13 13:22:25 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[0.628ms] [34;1m[rows:-][0m SELECT * FROM "res_users" LIMIT 5
+
+2025/07/13 13:22:25 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[49.097ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'apexive-hackaton' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'res_users' AND constraint_type = 'UNIQUE'
+
+2025/07/13 13:22:25 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[48.442ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'apexive-hackaton' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'res_users'
+
+2025/07/13 13:22:25 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[1.168ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
+		WHERE a.attnum > 0 -- hide internal columns
+		AND NOT a.attisdropped -- hide deleted columns
+		AND b.relname = 'res_users'
+
+2025/07/13 13:22:25 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[2.896ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 13:22:25 [32m
+[0m[33m[0.314ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
+
+2025/07/13 13:22:25 [32m
+[0m[33m[5.277ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'apexive-hackaton' AND table_schema = CURRENT_SCHEMA() AND table_name = 'res_users'
+
+2025/07/13 13:22:25 [32m
+[0m[33m[0.403ms] [34;1m[rows:-][0m SELECT * FROM "res_users" LIMIT 5
+
+2025/07/13 13:22:25 [32m
+[0m[33m[42.536ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'apexive-hackaton' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'res_users' AND constraint_type = 'UNIQUE'
+
+2025/07/13 13:22:25 [32m
+[0m[33m[45.663ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'apexive-hackaton' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'res_users'
+
+2025/07/13 13:22:25 [32m
+[0m[33m[0.655ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
+		WHERE a.attnum > 0 -- hide internal columns
+		AND NOT a.attisdropped -- hide deleted columns
+		AND b.relname = 'res_users'
+
+2025/07/13 13:22:25 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[1.642ms] [34;1m[rows:1][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'create_uid') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 13:22:25 [32m
+[0m[33m[0.363ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
+
+2025/07/13 13:22:25 [32m
+[0m[33m[4.687ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'apexive-hackaton' AND table_schema = CURRENT_SCHEMA() AND table_name = 'res_users'
+
+2025/07/13 13:22:25 [32m
+[0m[33m[0.563ms] [34;1m[rows:-][0m SELECT * FROM "res_users" LIMIT 5
+
+2025/07/13 13:22:25 [32m
+[0m[33m[44.876ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'apexive-hackaton' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'res_users' AND constraint_type = 'UNIQUE'
+
+2025/07/13 13:22:25 [32m
+[0m[33m[46.663ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'apexive-hackaton' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'res_users'
+
+2025/07/13 13:22:25 [32m
+[0m[33m[0.630ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
+		WHERE a.attnum > 0 -- hide internal columns
+		AND NOT a.attisdropped -- hide deleted columns
+		AND b.relname = 'res_users'
+
+2025/07/13 13:22:25 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[1.865ms] [34;1m[rows:1][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'write_uid') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 13:22:25 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[1.854ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'create_date') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 13:22:25 [32m
+[0m[33m[0.391ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
+
+2025/07/13 13:22:25 [32m
+[0m[33m[4.304ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'apexive-hackaton' AND table_schema = CURRENT_SCHEMA() AND table_name = 'res_users'
+
+2025/07/13 13:22:25 [32m
+[0m[33m[0.604ms] [34;1m[rows:-][0m SELECT * FROM "res_users" LIMIT 5
+
+2025/07/13 13:22:25 [32m
+[0m[33m[48.903ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'apexive-hackaton' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'res_users' AND constraint_type = 'UNIQUE'
+
+2025/07/13 13:22:25 [32m
+[0m[33m[44.768ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'apexive-hackaton' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'res_users'
+
+2025/07/13 13:22:25 [32m
+[0m[33m[0.572ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
+		WHERE a.attnum > 0 -- hide internal columns
+		AND NOT a.attisdropped -- hide deleted columns
+		AND b.relname = 'res_users'
+
+2025/07/13 13:22:25 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[1.835ms] [34;1m[rows:1][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'write_date') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 13:22:25 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[1.733ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'deleted_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 13:22:25 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[0.413ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'login') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 13:22:25 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[0.413ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'name') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 13:22:25 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[0.292ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'email') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 13:22:25 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[0.309ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'password') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 13:22:25 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[0.300ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'active') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 13:22:25 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[0.293ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'partner_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 13:22:25 [32m
+[0m[33m[0.208ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
+
+2025/07/13 13:22:25 [32m
+[0m[33m[4.381ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'apexive-hackaton' AND table_schema = CURRENT_SCHEMA() AND table_name = 'res_users'
+
+2025/07/13 13:22:25 [32m
+[0m[33m[0.368ms] [34;1m[rows:-][0m SELECT * FROM "res_users" LIMIT 5
+
+2025/07/13 13:22:26 [32m
+[0m[33m[41.562ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'apexive-hackaton' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'res_users' AND constraint_type = 'UNIQUE'
+
+2025/07/13 13:22:26 [32m
+[0m[33m[41.095ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'apexive-hackaton' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'res_users'
+
+2025/07/13 13:22:26 [32m
+[0m[33m[0.615ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
+		WHERE a.attnum > 0 -- hide internal columns
+		AND NOT a.attisdropped -- hide deleted columns
+		AND b.relname = 'res_users'
+
+2025/07/13 13:22:26 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[0.398ms] [34;1m[rows:1][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'share') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 13:22:26 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[1.383ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'res_users' AND indexname = 'idx_res_users_create_uid' AND schemaname = CURRENT_SCHEMA()
+
+2025/07/13 13:22:26 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[0.597ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'res_users' AND indexname = 'idx_res_users_write_uid' AND schemaname = CURRENT_SCHEMA()
+
+2025/07/13 13:22:26 [32m/home/marti/hack/goodoo/database/registry.go:258
+[0m[33m[0.687ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'res_users' AND indexname = 'idx_res_users_deleted_at' AND schemaname = CURRENT_SCHEMA()
+
+2025/07/13 13:22:26 [32m/home/marti/hack/goodoo/main.go:142
+[0m[33m[0.872ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE login = 'admin' AND "res_users"."deleted_at" IS NULL
+2025-07-13 13:22:26,086 29300 INFO ? goodoo.main: Admin user already exists - - -
+2025-07-13 13:22:26,086 29300 INFO ? goodoo.api.handler: Registered API routes - - -
+2025-07-13 13:22:26,086 29300 INFO ? goodoo.main: Starting server on port 8080 - - -
+2025-07-13 13:22:26,086 29300 INFO ? goodoo.main: Session store: ./sessions - - -
+2025-07-13 13:22:26,086 29300 INFO ? goodoo.main: Default database: apexive-hackaton - - -
+2025-07-13 13:22:39,870 29300 INFO apexive-hackaton goodoo.main: Request: POST /auth/login from ::1 (User-Agent: curl/8.5.0) - - -
+2025-07-13 13:22:39,870 29300 INFO apexive-hackaton goodoo.main: Login attempt for user: admin on database: apexive-hackaton - - -
+
+2025/07/13 13:22:39 [32m/home/marti/hack/goodoo/models/user.go:154
+[0m[33m[0.932ms] [34;1m[rows:1][0m SELECT * FROM "res_users" WHERE (login = 'admin' AND active = true) AND "res_users"."deleted_at" IS NULL ORDER BY "res_users"."id" LIMIT 1
+2025-07-13 13:22:40,172 29300 INFO apexive-hackaton goodoo.main: User authenticated: admin (ID: 2) on database apexive-hackaton - - -
+2025-07-13 13:22:40,172 29300 INFO apexive-hackaton goodoo.main: User admin successfully authenticated - - -
+2025-07-13 13:22:40,172 29300 INFO apexive-hackaton goodoo.main: Request completed: POST /auth/login - Status: 200 - Duration: 302.048928ms - - -
+Performance: POST /auth/login - 200 - 0 0.000 0.302
+2025-07-13 13:22:40,172 29300 INFO apexive-hackaton goodoo.main: POST /auth/login - User: admin (ID: 2) - DB: apexive-hackaton - Duration: 302.317639ms - - -
+2025-07-13 13:22:46,820 29300 INFO apexive-hackaton goodoo.main: Request: GET / from ::1 (User-Agent: curl/8.5.0) - - -
+2025-07-13 13:22:46,822 29300 INFO apexive-hackaton goodoo.main: Request completed: GET / - Status: 200 - Duration: 2.046026ms - - -
+Performance: GET / - 200 - 0 0.000 0.002
+2025-07-13 13:22:46,822 29300 INFO apexive-hackaton goodoo.main: GET / - User:  (ID: 0) - DB: apexive-hackaton - Duration: 2.377612ms - - -
+2025-07-13 13:22:53,249 29300 INFO apexive-hackaton goodoo.main: Request: GET /login from ::1 (User-Agent: curl/8.5.0) - - -
+2025-07-13 13:22:53,249 29300 INFO apexive-hackaton goodoo.main: Request completed: GET /login - Status: 200 - Duration: 374.483µs - - -
+Performance: GET /login - 200 - 0 0.000 0.001
+2025-07-13 13:22:53,250 29300 INFO apexive-hackaton goodoo.main: GET /login - User:  (ID: 0) - DB: apexive-hackaton - Duration: 969.288µs - - -

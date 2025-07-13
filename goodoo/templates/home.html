@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goodoo Framework - Home</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Welcome to Goodoo Framework</h1>
+            <nav class="nav">
+                <a href="/" class="nav-link active">Home</a>
+                <a href="/login" class="nav-link">Login</a>
+                <a href="/health" class="nav-link">Health</a>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <section class="hero">
+                <h2>Go + Echo + Odoo-inspired patterns</h2>
+                <p>A modern web framework inspired by Odoo's architecture, built with Go and Echo.</p>
+            </section>
+
+            <section class="features">
+                <h3>Framework Features</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>API Decorators</h4>
+                        <p>Powerful decorator system for API endpoints</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Field System</h4>
+                        <p>Advanced field system with validation</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Session Management</h4>
+                        <p>Robust session handling and user management</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Performance Tracking</h4>
+                        <p>Built-in logging with performance monitoring</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Database Integration</h4>
+                        <p>Seamless PostgreSQL integration</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Model System</h4>
+                        <p>Odoo-inspired model and recordset patterns</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="endpoints">
+                <h3>Available Endpoints</h3>
+                <div class="endpoint-list">
+                    <div class="endpoint-item">
+                        <code>GET /health</code>
+                        <span>System health check</span>
+                    </div>
+                    <div class="endpoint-item">
+                        <code>GET /api/models</code>
+                        <span>API documentation</span>
+                    </div>
+                    <div class="endpoint-item">
+                        <code>POST /auth/login</code>
+                        <span>User authentication</span>
+                    </div>
+                    <div class="endpoint-item">
+                        <code>GET /session</code>
+                        <span>Session management</span>
+                    </div>
+                    <div class="endpoint-item">
+                        <code>GET /db/list</code>
+                        <span>Database operations</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Goodoo Framework. Built with Go and Echo.</p>
+        </footer>
+    </div>
+</body>
+</html>

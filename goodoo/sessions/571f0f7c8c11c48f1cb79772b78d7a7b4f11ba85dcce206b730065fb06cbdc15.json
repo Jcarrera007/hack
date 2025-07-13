@@ -1,0 +1,16 @@
+{
+  "sid": "571f0f7c8c11c48f1cb79772b78d7a7b4f11ba85dcce206b730065fb06cbdc15",
+  "data": {},
+  "created_at": "2025-07-13T11:01:42.852064378-04:00",
+  "last_accessed": "2025-07-13T11:01:42.85209493-04:00",
+  "context": {
+    "lang": "en_US",
+    "method": "GET",
+    "path": "/favicon.ico",
+    "remote_addr": "::1",
+    "request_id": "1752418902852085526-571f0f7c",
+    "timezone": "UTC",
+    "tz": "UTC",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0"
+  }
+}

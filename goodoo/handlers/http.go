@@ -5,6 +5,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 	goodooHttp "goodoo/http"
+	"goodoo/models"
 )
 
 // AuthHandler handles authentication requests
@@ -36,27 +37,42 @@ func (h *AuthHandler) Login(c echo.Context) error {
 
 	req.Logger.InfoCtx(req.Context, "Login attempt for user: %s on database: %s", login, database)
 
-	// TODO: Implement actual authentication logic
-	// For now, simulate authentication
-	if login == "admin" && password == "admin" {
-		userID := 1
-		if err := req.Authenticate(database, login, userID); err != nil {
-			req.Logger.ErrorCtx(req.Context, "Authentication failed: %v", err)
-			return echo.NewHTTPError(http.StatusInternalServerError, "Authentication failed")
-		}
-
-		req.Logger.InfoCtx(req.Context, "User %s successfully authenticated", login)
-
-		return c.JSON(http.StatusOK, map[string]interface{}{
-			"success": true,
-			"user_id": userID,
-			"login":   login,
-			"db":      database,
-		})
+	// Get database connection
+	db := req.GetDB()
+	if db == nil {
+		req.Logger.ErrorCtx(req.Context, "Database connection not available")
+		return echo.NewHTTPError(http.StatusInternalServerError, "Database connection error")
 	}
 
-	req.Logger.WarningCtx(req.Context, "Invalid credentials for user: %s", login)
-	return echo.NewHTTPError(http.StatusUnauthorized, "Invalid credentials")
+	// Find user by login
+	user, err := models.FindUserByLogin(db, login)
+	if err != nil {
+		req.Logger.WarningCtx(req.Context, "User not found: %s", login)
+		return echo.NewHTTPError(http.StatusUnauthorized, "Invalid credentials")
+	}
+
+	// Check password
+	if !user.CheckPassword(password) {
+		req.Logger.WarningCtx(req.Context, "Invalid password for user: %s", login)
+		return echo.NewHTTPError(http.StatusUnauthorized, "Invalid credentials")
+	}
+
+	// Authenticate user
+	if err := req.Authenticate(database, login, int(user.ID)); err != nil {
+		req.Logger.ErrorCtx(req.Context, "Authentication failed: %v", err)
+		return echo.NewHTTPError(http.StatusInternalServerError, "Authentication failed")
+	}
+
+	req.Logger.InfoCtx(req.Context, "User %s successfully authenticated", login)
+
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"success": true,
+		"user_id": user.ID,
+		"login":   login,
+		"name":    user.Name,
+		"email":   user.Email,
+		"db":      database,
+	})
 }
 
 // Logout handles user logout

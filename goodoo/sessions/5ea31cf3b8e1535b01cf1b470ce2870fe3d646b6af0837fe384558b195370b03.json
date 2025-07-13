@@ -1,0 +1,16 @@
+{
+  "sid": "5ea31cf3b8e1535b01cf1b470ce2870fe3d646b6af0837fe384558b195370b03",
+  "data": {},
+  "created_at": "2025-07-13T13:22:53.249487472-04:00",
+  "last_accessed": "2025-07-13T13:22:53.249523235-04:00",
+  "context": {
+    "lang": "en_US",
+    "method": "GET",
+    "path": "/login",
+    "remote_addr": "::1",
+    "request_id": "1752427373249515877-5ea31cf3",
+    "timezone": "UTC",
+    "tz": "UTC",
+    "user_agent": "curl/8.5.0"
+  }
+}

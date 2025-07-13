@@ -11,7 +11,9 @@ import (
 	"time"
 
 	"github.com/labstack/echo/v4"
+	"goodoo/database"
 	"goodoo/logging"
+	"gorm.io/gorm"
 )
 
 // Request wraps the HTTP request with session and context utilities (like Odoo's Request)
@@ -407,6 +409,21 @@ func (r *Request) AddToContext(key string, value interface{}) {
 // GetFromContext retrieves a value from the request context
 func (r *Request) GetFromContext(key string) interface{} {
 	return r.Context.Value(key)
+}
+
+// GetDB returns the GORM database instance for the current database
+func (r *Request) GetDB() *gorm.DB {
+	if r.DB == "" {
+		return nil
+	}
+	
+	db, err := database.GetDatabase(r.DB)
+	if err != nil {
+		r.Logger.ErrorCtx(r.Context, "Failed to get database connection for %s: %v", r.DB, err)
+		return nil
+	}
+	
+	return db
 }
 
 // LogRequest logs request information

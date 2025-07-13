@@ -27,10 +27,9 @@ func DefaultConfig() *ConnectionConfig {
 	return &ConnectionConfig{
 		Host:         "localhost",
 		Port:         5432,
-		User:         "postgres",
-		Password:     "",
-		Database:     "",
-		SSLMode:      "prefer",
+		User:         "odoo",
+		Password:     "odoo",
+		Database:     "apexive-hackaton",
 		MaxOpenConns: 64,
 		MaxIdleConns: 16,
 		AppName:      fmt.Sprintf("goodoo-%d", os.Getpid()),
@@ -79,12 +78,12 @@ func (c *ConnectionConfig) LoadFromEnv() {
 func ParseConnectionInfo(dbOrURI string) (string, *ConnectionConfig, error) {
 	config := DefaultConfig()
 	config.LoadFromEnv()
-	
+
 	// Check if it's a PostgreSQL URI
 	if strings.HasPrefix(dbOrURI, "postgresql://") || strings.HasPrefix(dbOrURI, "postgres://") {
 		return parseURI(dbOrURI, config)
 	}
-	
+
 	// It's just a database name
 	config.Database = dbOrURI
 	return dbOrURI, config, nil
@@ -96,7 +95,7 @@ func parseURI(uri string, config *ConnectionConfig) (string, *ConnectionConfig, 
 	if err != nil {
 		return "", nil, fmt.Errorf("invalid URI: %w", err)
 	}
-	
+
 	// Extract database name
 	dbName := ""
 	if len(parsed.Path) > 1 {
@@ -106,11 +105,11 @@ func parseURI(uri string, config *ConnectionConfig) (string, *ConnectionConfig, 
 	} else {
 		dbName = parsed.Hostname()
 	}
-	
+
 	// Store the full DSN for direct use
 	config.DSN = uri
 	config.Database = dbName
-	
+
 	return dbName, config, nil
 }
 
@@ -120,10 +119,10 @@ func (c *ConnectionConfig) BuildDSN() string {
 	if c.DSN != "" {
 		return c.DSN
 	}
-	
+
 	// Build DSN from individual components
 	var parts []string
-	
+
 	if c.Host != "" {
 		parts = append(parts, fmt.Sprintf("host=%s", c.Host))
 	}
@@ -145,7 +144,7 @@ func (c *ConnectionConfig) BuildDSN() string {
 	if c.AppName != "" {
 		parts = append(parts, fmt.Sprintf("application_name=%s", c.AppName))
 	}
-	
+
 	return strings.Join(parts, " ")
 }
 
