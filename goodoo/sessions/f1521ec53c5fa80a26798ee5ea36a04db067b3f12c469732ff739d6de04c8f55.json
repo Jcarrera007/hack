@@ -1,0 +1,16 @@
+{
+  "sid": "f1521ec53c5fa80a26798ee5ea36a04db067b3f12c469732ff739d6de04c8f55",
+  "data": {},
+  "created_at": "2025-07-12T21:40:21.528882731-04:00",
+  "last_accessed": "2025-07-12T21:40:46.157067537-04:00",
+  "context": {
+    "lang": "en_US",
+    "method": "GET",
+    "path": "/auth",
+    "remote_addr": "::1",
+    "request_id": "1752370846157056869-f1521ec5",
+    "timezone": "UTC",
+    "tz": "UTC",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0"
+  }
+}
