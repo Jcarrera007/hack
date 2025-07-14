@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goodoo Dashboard</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Goodoo</h2>
+                <span class="version">v1.0</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="/dashboard" class="nav-item active" data-section="overview">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Overview</span>
+                </a>
+                <a href="#" class="nav-item" data-section="llm-tools">
+                    <span class="nav-icon">🤖</span>
+                    <span class="nav-text">LLM Tools</span>
+                </a>
+                <a href="#" class="nav-item" data-section="chat">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">AI Chat</span>
+                </a>
+                <a href="#" class="nav-item" data-section="api">
+                    <span class="nav-icon">🔗</span>
+                    <span class="nav-text">API Metrics</span>
+                </a>
+                <a href="#" class="nav-item" data-section="logs">
+                    <span class="nav-icon">📋</span>
+                    <span class="nav-text">Logs</span>
+                </a>
+                <a href="#" class="nav-item" data-section="settings">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text">Settings</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-name">{{.UserName}}</span>
+                    <span class="user-role">{{.UserRole}}</span>
+                </div>
+                <a href="/auth/logout" class="logout-btn">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-title">
+                    <h1 id="section-title">Dashboard Overview</h1>
+                    <p id="section-description">Monitor your Goodoo framework metrics and system status</p>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="refresh-btn" onclick="refreshData()">
+                        <span class="refresh-icon">🔄</span>
+                        Refresh
+                    </button>
+                    <div class="time-filter">
+                        <select id="timeRange" onchange="updateTimeRange()">
+                            <option value="1h">Last Hour</option>
+                            <option value="24h" selected>Last 24 Hours</option>
+                            <option value="7d">Last 7 Days</option>
+                            <option value="30d">Last 30 Days</option>
+                        </select>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Overview Section -->
+            <section id="overview-section" class="dashboard-section active">
+                <!-- Tools Overview -->
+                <div class="tools-overview">
+                    <h3>Active Tools</h3>
+                    <div class="tools-stats">
+                        <div class="tool-count">
+                            <span class="count-number" id="tool-count">4</span>
+                            <span class="count-label">Tools Running</span>
+                        </div>
+                    </div>
+                    <div class="tools-list">
+                        <div class="tool-item active">
+                            <span class="tool-icon">🔗</span>
+                            <span class="tool-name">API Metrics</span>
+                            <span class="tool-status">Active</span>
+                        </div>
+                        <div class="tool-item active">
+                            <span class="tool-icon">📋</span>
+                            <span class="tool-name">Log Monitor</span>
+                            <span class="tool-status">Active</span>
+                        </div>
+                        <div class="tool-item active">
+                            <span class="tool-icon">⚙️</span>
+                            <span class="tool-name">Settings Manager</span>
+                            <span class="tool-status">Active</span>
+                        </div>
+                        <div class="tool-item active">
+                            <span class="tool-icon">📊</span>
+                            <span class="tool-name">Dashboard Core</span>
+                            <span class="tool-status">Active</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="charts-row">
+                    <div class="chart-container">
+                        <h3>Request Volume</h3>
+                        <canvas id="requestChart"></canvas>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <h3>Response Times</h3>
+                        <canvas id="responseChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Activity Feed -->
+                <div class="activity-section">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-feed" id="activity-feed">
+                        <div class="activity-item">
+                            <span class="activity-time">2 min ago</span>
+                            <span class="activity-text">User admin logged in</span>
+                            <span class="activity-type info">INFO</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="activity-time">5 min ago</span>
+                            <span class="activity-text">API endpoint /api/models called</span>
+                            <span class="activity-type success">SUCCESS</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="activity-time">10 min ago</span>
+                            <span class="activity-text">Database connection established</span>
+                            <span class="activity-type info">INFO</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- LLM Tools Section -->
+            <section id="llm-tools-section" class="dashboard-section">
+                <div class="section-content">
+                    <div class="llm-tools-header">
+                        <h3>Available LLM Tools</h3>
+                        <p>Select and configure the AI tools you want to use in your workflow</p>
+                    </div>
+
+                    <!-- Tool Categories -->
+                    <div class="tool-categories">
+                        <div class="category-section">
+                            <h4>LLM Providers</h4>
+                            <div class="tools-grid">
+                                <div class="llm-tool-card" data-tool="llm_openai">
+                                    <div class="tool-header">
+                                        <div class="tool-info">
+                                            <h5>OpenAI Integration</h5>
+                                            <span class="tool-provider">llm_openai</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" class="tool-toggle" data-tool="llm_openai">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <p class="tool-description">GPT models for chat and embedding capabilities</p>
+                                    <div class="tool-config" style="display: none;">
+                                        <label>API Key:</label>
+                                        <input type="password" class="config-input" placeholder="sk-...">
+                                        <label>Base URL:</label>
+                                        <input type="text" class="config-input" placeholder="https://api.openai.com/v1">
+                                    </div>
+                                </div>
+
+                                <div class="llm-tool-card" data-tool="llm_anthropic">
+                                    <div class="tool-header">
+                                        <div class="tool-info">
+                                            <h5>Anthropic Integration</h5>
+                                            <span class="tool-provider">llm_anthropic</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" class="tool-toggle" data-tool="llm_anthropic">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <p class="tool-description">Claude models for chat and multimodal capabilities</p>
+                                    <div class="tool-config" style="display: none;">
+                                        <label>API Key:</label>
+                                        <input type="password" class="config-input" placeholder="ant-api-...">
+                                    </div>
+                                </div>
+
+                                <div class="llm-tool-card" data-tool="llm_ollama">
+                                    <div class="tool-header">
+                                        <div class="tool-info">
+                                            <h5>Ollama Integration</h5>
+                                            <span class="tool-provider">llm_ollama</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" class="tool-toggle" data-tool="llm_ollama">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <p class="tool-description">Local LLM models via Ollama</p>
+                                    <div class="tool-config" style="display: none;">
+                                        <label>Server URL:</label>
+                                        <input type="text" class="config-input" value="http://localhost:11434">
+                                    </div>
+                                </div>
+
+                                <div class="llm-tool-card" data-tool="llm_mistral">
+                                    <div class="tool-header">
+                                        <div class="tool-info">
+                                            <h5>Mistral Integration</h5>
+                                            <span class="tool-provider">llm_mistral</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" class="tool-toggle" data-tool="llm_mistral">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <p class="tool-description">Mistral AI models for text generation</p>
+                                    <div class="tool-config" style="display: none;">
+                                        <label>API Key:</label>
+                                        <input type="password" class="config-input" placeholder="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="category-section">
+                            <h4>Vector Stores & Embeddings</h4>
+                            <div class="tools-grid">
+                                <div class="llm-tool-card" data-tool="llm_chroma">
+                                    <div class="tool-header">
+                                        <div class="tool-info">
+                                            <h5>Chroma Vector Store</h5>
+                                            <span class="tool-provider">llm_chroma</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" class="tool-toggle" data-tool="llm_chroma">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <p class="tool-description">ChromaDB for vector storage and similarity search</p>
+                                    <div class="tool-config" style="display: none;">
+                                        <label>Database Path:</label>
+                                        <input type="text" class="config-input" placeholder="/path/to/chroma/db">
+                                    </div>
+                                </div>
+
+                                <div class="llm-tool-card" data-tool="llm_qdrant">
+                                    <div class="tool-header">
+                                        <div class="tool-info">
+                                            <h5>Qdrant Vector Store</h5>
+                                            <span class="tool-provider">llm_qdrant</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" class="tool-toggle" data-tool="llm_qdrant">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <p class="tool-description">Qdrant vector database for high-performance search</p>
+                                    <div class="tool-config" style="display: none;">
+                                        <label>Server URL:</label>
+                                        <input type="text" class="config-input" placeholder="http://localhost:6333">
+                                    </div>
+                                </div>
+
+                                <div class="llm-tool-card" data-tool="llm_pgvector">
+                                    <div class="tool-header">
+                                        <div class="tool-info">
+                                            <h5>PostgreSQL Vector</h5>
+                                            <span class="tool-provider">llm_pgvector</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" class="tool-toggle" data-tool="llm_pgvector">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <p class="tool-description">PostgreSQL with pgvector extension for vector operations</p>
+                                    <div class="tool-config" style="display: none;">
+                                        <label>Connection String:</label>
+                                        <input type="password" class="config-input" placeholder="postgresql://...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="category-section">
+                            <h4>Knowledge & Training</h4>
+                            <div class="tools-grid">
+                                <div class="llm-tool-card" data-tool="llm_knowledge">
+                                    <div class="tool-header">
+                                        <div class="tool-info">
+                                            <h5>Knowledge Base</h5>
+                                            <span class="tool-provider">llm_knowledge</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" class="tool-toggle" data-tool="llm_knowledge">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <p class="tool-description">Knowledge management and document processing</p>
+                                    <div class="tool-config" style="display: none;">
+                                        <label>Chunk Size:</label>
+                                        <input type="number" class="config-input" value="1000" min="100" max="4000">
+                                    </div>
+                                </div>
+
+                                <div class="llm-tool-card" data-tool="llm_training">
+                                    <div class="tool-header">
+                                        <div class="tool-info">
+                                            <h5>Model Training</h5>
+                                            <span class="tool-provider">llm_training</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" class="tool-toggle" data-tool="llm_training">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <p class="tool-description">Fine-tuning and training capabilities</p>
+                                    <div class="tool-config" style="display: none;">
+                                        <label>Training Data Path:</label>
+                                        <input type="text" class="config-input" placeholder="/path/to/training/data">
+                                    </div>
+                                </div>
+
+                                <div class="llm-tool-card" data-tool="llm_assistant">
+                                    <div class="tool-header">
+                                        <div class="tool-info">
+                                            <h5>AI Assistant</h5>
+                                            <span class="tool-provider">llm_assistant</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" class="tool-toggle" data-tool="llm_assistant">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <p class="tool-description">Conversational AI assistant interface</p>
+                                    <div class="tool-config" style="display: none;">
+                                        <label>Default Model:</label>
+                                        <input type="text" class="config-input" placeholder="gpt-3.5-turbo">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="category-section">
+                            <h4>Specialized Tools</h4>
+                            <div class="tools-grid">
+                                <div class="llm-tool-card" data-tool="llm_replicate">
+                                    <div class="tool-header">
+                                        <div class="tool-info">
+                                            <h5>Replicate Integration</h5>
+                                            <span class="tool-provider">llm_replicate</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" class="tool-toggle" data-tool="llm_replicate">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <p class="tool-description">Access to Replicate's model marketplace</p>
+                                    <div class="tool-config" style="display: none;">
+                                        <label>API Token:</label>
+                                        <input type="password" class="config-input" placeholder="r8_...">
+                                    </div>
+                                </div>
+
+                                <div class="llm-tool-card" data-tool="llm_litellm">
+                                    <div class="tool-header">
+                                        <div class="tool-info">
+                                            <h5>LiteLLM Gateway</h5>
+                                            <span class="tool-provider">llm_litellm</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" class="tool-toggle" data-tool="llm_litellm">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <p class="tool-description">Universal API gateway for multiple LLM providers</p>
+                                    <div class="tool-config" style="display: none;">
+                                        <label>Gateway URL:</label>
+                                        <input type="text" class="config-input" placeholder="http://localhost:8000">
+                                    </div>
+                                </div>
+
+                                <div class="llm-tool-card" data-tool="llm_mcp">
+                                    <div class="tool-header">
+                                        <div class="tool-info">
+                                            <h5>MCP Integration</h5>
+                                            <span class="tool-provider">llm_mcp</span>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" class="tool-toggle" data-tool="llm_mcp">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <p class="tool-description">Model Control Protocol integration</p>
+                                    <div class="tool-config" style="display: none;">
+                                        <label>MCP Server:</label>
+                                        <input type="text" class="config-input" placeholder="localhost:8080">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="llm-tools-actions">
+                        <button class="btn btn-primary" onclick="dashboard.saveToolConfiguration()">
+                            Save Configuration
+                        </button>
+                        <button class="btn btn-secondary" onclick="dashboard.testSelectedTools()">
+                            Test Selected Tools
+                        </button>
+                        <button class="btn btn-secondary" onclick="dashboard.resetToolConfiguration()">
+                            Reset to Defaults
+                        </button>
+                    </div>
+
+                    <!-- Active Tools Summary -->
+                    <div class="active-tools-summary">
+                        <h4>Currently Active Tools</h4>
+                        <div class="active-tools-list" id="active-tools-list">
+                            <p class="no-tools">No tools selected. Choose tools from the categories above.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chat Section -->
+            <section id="chat-section" class="dashboard-section">
+                <div class="chat-layout">
+                    <!-- Chat Sidebar -->
+                    <div class="chat-sidebar">
+                        <div class="chat-tabs">
+                            <button class="chat-tab active" data-tab="ai-chat">🤖 AI Assistant</button>
+                            <button class="chat-tab" data-tab="user-chat">👥 Team Chat</button>
+                        </div>
+                        
+                        <!-- AI Chat Info (shown when AI tab is active) -->
+                        <div id="ai-chat-info" class="tab-content active">
+                            <div class="chat-mode-info">
+                                <h4>AI Assistant</h4>
+                                <p>Chat with your AI assistant for help and information.</p>
+                                <div class="model-selector">
+                                    <label for="ai-model-select">Model:</label>
+                                    <select id="ai-model-select" class="model-select">
+                                        <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+                                        <option value="gpt-4">GPT-4</option>
+                                        <option value="claude-3">Claude 3</option>
+                                        <option value="llama2">Llama 2 (Local)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- User Chat Rooms (shown when user chat tab is active) -->
+                        <div id="user-chat-info" class="tab-content">
+                            <div class="chat-rooms-header">
+                                <h4>Chat Rooms</h4>
+                                <button class="btn btn-sm btn-primary" onclick="dashboard.createNewGroupChat()">
+                                    ➕ New Group
+                                </button>
+                            </div>
+                            <div class="chat-rooms-list" id="chat-rooms-list">
+                                <div class="loading-rooms">Loading rooms...</div>
+                            </div>
+                            
+                            <div class="online-users-header">
+                                <h4>Online Users</h4>
+                            </div>
+                            <div class="online-users-list" id="online-users-list">
+                                <div class="loading-users">Loading users...</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Chat Area -->
+                    <div class="chat-container">
+                        <!-- Chat Header -->
+                        <div class="chat-header">
+                            <div class="chat-title">
+                                <h3 id="current-chat-title">AI Assistant</h3>
+                                <div class="chat-status">
+                                    <span class="status-indicator" id="chat-status">●</span>
+                                    <span class="status-text" id="chat-status-text">Ready</span>
+                                </div>
+                            </div>
+                            <div class="chat-controls">
+                                <button class="btn btn-secondary" onclick="dashboard.clearChat()">
+                                    🗑️ Clear
+                                </button>
+                                <button class="btn btn-secondary" onclick="dashboard.downloadChat()">
+                                    💾 Export
+                                </button>
+                            </div>
+                        </div>
+
+                    <!-- Chat Messages Area -->
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="welcome-message">
+                            <div class="assistant-avatar">🤖</div>
+                            <div class="message-content">
+                                <div class="message-bubble assistant">
+                                    <p>Hello! I'm your AI assistant. I can help you with questions about your Goodoo system, LLM tools, programming, and general assistance.</p>
+                                    <p>How can I help you today?</p>
+                                </div>
+                                <div class="message-time">Just now</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Input Area -->
+                    <div class="chat-input-area">
+                        <div class="chat-input-container">
+                            <textarea 
+                                id="chat-input" 
+                                class="chat-input" 
+                                placeholder="Type your message here... (Press Ctrl+Enter to send)"
+                                rows="1"
+                            ></textarea>
+                            <div class="input-actions">
+                                <button id="attach-btn" class="action-btn" title="Attach file">
+                                    📎
+                                </button>
+                                <button id="voice-btn" class="action-btn" title="Voice input">
+                                    🎤
+                                </button>
+                                <button id="send-btn" class="send-btn" onclick="dashboard.sendMessage()">
+                                    <span class="send-icon">➤</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="input-info">
+                            <span class="char-count" id="char-count">0/4000</span>
+                            <span class="typing-indicator" id="typing-indicator" style="display: none;">
+                                AI is typing...
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Chat Suggestions -->
+                    <div class="chat-suggestions" id="chat-suggestions">
+                        <div class="suggestion-category">
+                            <h5>Quick Questions</h5>
+                            <button class="suggestion-btn" onclick="dashboard.useSuggestion('How do I configure a new LLM provider?')">
+                                How do I configure a new LLM provider?
+                            </button>
+                            <button class="suggestion-btn" onclick="dashboard.useSuggestion('What LLM tools are currently active?')">
+                                What LLM tools are currently active?
+                            </button>
+                            <button class="suggestion-btn" onclick="dashboard.useSuggestion('Show me the system health status')">
+                                Show me the system health status
+                            </button>
+                        </div>
+                        <div class="suggestion-category">
+                            <h5>Development Help</h5>
+                            <button class="suggestion-btn" onclick="dashboard.useSuggestion('Help me write a Go function')">
+                                Help me write a Go function
+                            </button>
+                            <button class="suggestion-btn" onclick="dashboard.useSuggestion('Explain this code snippet')">
+                                Explain this code snippet
+                            </button>
+                            <button class="suggestion-btn" onclick="dashboard.useSuggestion('Best practices for API design')">
+                                Best practices for API design
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </section>
+
+            <!-- API Metrics Section -->
+            <section id="api-section" class="dashboard-section">
+                <div class="section-content">
+                    <h3>API Performance Metrics</h3>
+                    <div class="api-metrics-grid">
+                        <div class="api-metric-card">
+                            <h4>Total Requests</h4>
+                            <div class="api-metric-value" id="total-requests">0</div>
+                        </div>
+                        <div class="api-metric-card">
+                            <h4>Success Rate</h4>
+                            <div class="api-metric-value" id="success-rate">0%</div>
+                        </div>
+                        <div class="api-metric-card">
+                            <h4>Error Rate</h4>
+                            <div class="api-metric-value" id="error-rate">0%</div>
+                        </div>
+                        <div class="api-metric-card">
+                            <h4>Avg Response Time</h4>
+                            <div class="api-metric-value" id="avg-response-time">0ms</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Logs Section -->
+            <section id="logs-section" class="dashboard-section">
+                <div class="section-content">
+                    <h3>System Logs</h3>
+                    <div class="logs-container">
+                        <div class="logs-filter">
+                            <select id="log-level">
+                                <option value="all">All Levels</option>
+                                <option value="debug">Debug</option>
+                                <option value="info">Info</option>
+                                <option value="warn">Warning</option>
+                                <option value="error">Error</option>
+                                <option value="critical">Critical</option>
+                            </select>
+                        </div>
+                        <div class="logs-display" id="logs-display">
+                            <div class="log-entry">
+                                <span class="log-time">2024-01-15 10:30:15</span>
+                                <span class="log-level info">INFO</span>
+                                <span class="log-message">Server started successfully</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings-section" class="dashboard-section">
+                <div class="section-content">
+                    <h3>System Settings</h3>
+                    <div class="settings-form">
+                        <div class="setting-group">
+                            <label>Log Level</label>
+                            <select id="settings-log-level">
+                                <option value="debug">Debug</option>
+                                <option value="info">Info</option>
+                                <option value="warn">Warning</option>
+                                <option value="error">Error</option>
+                            </select>
+                        </div>
+                        <div class="setting-group">
+                            <label>Session Timeout (minutes)</label>
+                            <input type="number" id="session-timeout" value="60" min="5" max="480">
+                        </div>
+                        <div class="setting-group">
+                            <label>Enable Performance Monitoring</label>
+                            <input type="checkbox" id="performance-monitoring" checked>
+                        </div>
+                        <button class="save-settings-btn" onclick="saveSettings()">Save Settings</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

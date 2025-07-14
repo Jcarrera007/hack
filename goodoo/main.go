@@ -10,6 +10,7 @@ import (
 	"goodoo/http"
 	"goodoo/logging"
 	"goodoo/models"
+	"goodoo/templates"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -61,6 +62,9 @@ func main() {
 
 	e := echo.New()
 
+	// Set up template renderer
+	e.Renderer = templates.NewTemplateRenderer()
+
 	// Disable Echo's default logger since we have our own
 	e.Logger.SetOutput(io.Discard)
 
@@ -100,6 +104,7 @@ func main() {
 	protected.Use(http.AuthenticationMiddleware(true))
 	protected.GET("/health/detailed", healthHandler.DetailedHealth)
 	protected.POST("/auth/logout", authHandler.Logout)
+	protected.GET("/auth/logout", authHandler.Logout)
 	protected.GET("/auth/session", authHandler.SessionInfo)
 	protected.POST("/db/set", dbHandler.SetDatabase)
 	protected.GET("/session", sessionHandler.GetSession)
@@ -114,6 +119,9 @@ func main() {
 
 	// API routes
 	handlers.RegisterAPIRoutes(e)
+	
+	// Dashboard routes
+	handlers.RegisterDashboardRoutes(e, requestConfig)
 
 	// Start server
 	port := os.Getenv("PORT")

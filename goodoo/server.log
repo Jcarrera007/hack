@@ -1,0 +1,969 @@
+2025-07-13 19:38:34,426 318874 INFO ? goodoo.main: Starting Goodoo application - - -
+2025-07-13 19:38:34,426 318874 INFO ? goodoo.main: Setting up database: apexive-hackaton - - -
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[3.167ms] [34;1m[rows:1][0m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND table_type = 'BASE TABLE'
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[0.526ms] [34;1m[rows:1][0m SELECT CURRENT_DATABASE()
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[8.801ms] [34;1m[rows:-][0m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'apexive-hackaton' AND table_schema = CURRENT_SCHEMA() AND table_name = 'res_users'
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[0.480ms] [34;1m[rows:-][0m SELECT * FROM "res_users" LIMIT 5
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[6.859ms] [34;1m[rows:-][0m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'apexive-hackaton' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'res_users' AND constraint_type = 'UNIQUE'
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[6.308ms] [34;1m[rows:-][0m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'apexive-hackaton' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'res_users'
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[0.760ms] [34;1m[rows:-][0m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
+		WHERE a.attnum > 0 -- hide internal columns
+		AND NOT a.attisdropped -- hide deleted columns
+		AND b.relname = 'res_users'
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[2.056ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[1.294ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'create_uid') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[1.676ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'write_uid') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[1.393ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'create_date') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[1.815ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'write_date') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[1.352ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'deleted_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[0.613ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'login') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[0.277ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'name') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[0.257ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'email') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[0.234ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'password') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[0.236ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'active') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[0.254ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'partner_id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[0.334ms] [34;1m[rows:0][0m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'res_users' AND column_name = 'share') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'res_users' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[1.335ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'res_users' AND indexname = 'idx_res_users_create_uid' AND schemaname = CURRENT_SCHEMA()
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[0.494ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'res_users' AND indexname = 'idx_res_users_write_uid' AND schemaname = CURRENT_SCHEMA()
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/database/registry.go:258
+[0m[33m[0.672ms] [34;1m[rows:1][0m SELECT count(*) FROM pg_indexes WHERE tablename = 'res_users' AND indexname = 'idx_res_users_deleted_at' AND schemaname = CURRENT_SCHEMA()
+
+2025/07/13 19:38:34 [32m/home/zekki/hack-1/goodoo/main.go:150
+[0m[33m[0.492ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE login = 'admin' AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:38:34,479 318874 INFO ? goodoo.main: Admin user already exists - - -
+2025-07-13 19:38:34,479 318874 INFO ? goodoo.api.handler: Registered API routes - - -
+2025-07-13 19:38:34,479 318874 INFO ? goodoo.main: Starting server on port 8080 - - -
+2025-07-13 19:38:34,479 318874 INFO ? goodoo.main: Session store: ./sessions - - -
+2025-07-13 19:38:34,479 318874 INFO ? goodoo.main: Default database: apexive-hackaton - - -
+2025-07-13 19:39:00,496 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:39:00,497 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:39:00,497 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 204.363µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:39:00,497 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:39:00,497 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 90.819µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+
+2025/07/13 19:39:00 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.671ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+2025-07-13 19:39:00,498 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 663.319µs - - -
+2025-07-13 19:39:00,498 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.003605ms - - -
+
+2025/07/13 19:39:00 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[2.721ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:39:00.498' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:39:00,501 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 4.975141ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.005
+2025-07-13 19:39:00,501 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 5.406471ms - - -
+2025-07-13 19:39:30,939 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:39:30,939 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 131.218µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:39:30,939 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:39:30,940 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 348.569µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:39:30,940 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 490.669µs - - -
+2025-07-13 19:39:30,939 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:39:30,940 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 971.311µs - - -
+
+2025/07/13 19:39:30 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.490ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:39:30 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.587ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:39:30.941' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:39:30,942 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 2.539461ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.003
+2025-07-13 19:39:30,942 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 2.923472ms - - -
+2025-07-13 19:40:01,197 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:40:01,197 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 166.102µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:40:01,197 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:40:01,197 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:40:01,197 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 466.904µs - - -
+2025-07-13 19:40:01,197 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 472.997µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.001
+2025-07-13 19:40:01,198 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 834.189µs - - -
+
+2025/07/13 19:40:01 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.367ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:40:01 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.348ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:40:01.198' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:40:01,199 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.804663ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:40:01,199 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 2.168348ms - - -
+2025-07-13 19:40:31,611 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:40:31,612 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 107.242µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:40:31,611 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:40:31,611 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:40:31,612 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 357.655µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:40:31,612 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 436.124µs - - -
+2025-07-13 19:40:31,612 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 832.435µs - - -
+
+2025/07/13 19:40:31 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.371ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:40:31 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.398ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:40:31.613' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:40:31,613 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.692444ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:40:31,613 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.958679ms - - -
+2025-07-13 19:40:49,100 318874 INFO apexive-hackaton goodoo.main: Request: POST /auth/login from ::1 (User-Agent: curl/8.5.0) - - -
+2025-07-13 19:40:49,100 318874 INFO apexive-hackaton goodoo.main: Login attempt for user: admin on database: apexive-hackaton - - -
+
+2025/07/13 19:40:49 [32m/home/zekki/hack-1/goodoo/models/user.go:154
+[0m[33m[0.957ms] [34;1m[rows:1][0m SELECT * FROM "res_users" WHERE (login = 'admin' AND active = true) AND "res_users"."deleted_at" IS NULL ORDER BY "res_users"."id" LIMIT 1
+2025-07-13 19:40:49,150 318874 INFO apexive-hackaton goodoo.main: User authenticated: admin (ID: 1) on database apexive-hackaton - - -
+2025-07-13 19:40:49,150 318874 INFO apexive-hackaton goodoo.main: User admin successfully authenticated - - -
+2025-07-13 19:40:49,150 318874 INFO apexive-hackaton goodoo.main: Request completed: POST /auth/login - Status: 200 - Duration: 49.672649ms - - -
+Performance: POST /auth/login - 200 - 0 0.000 0.050
+2025-07-13 19:40:49,150 318874 INFO apexive-hackaton goodoo.main: POST /auth/login - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 49.91241ms - - -
+2025-07-13 19:40:49,158 318874 INFO apexive-hackaton goodoo.main: Request: POST /api/users/create from ::1 (User-Agent: curl/8.5.0) - - -
+2025-07-13 19:40:49,159 318874 ERROR apexive-hackaton goodoo.main: Error binding request: code=400, message=EOF, internal=EOF - - -
+2025-07-13 19:40:49,159 318874 ERROR apexive-hackaton goodoo.main: Request failed: POST /api/users/create - Status: 200 - Duration: 539.066µs - Error: code=400, message=Invalid request format: code=400, message=EOF, internal=EOF - - -
+2025-07-13 19:40:49,159 318874 ERROR apexive-hackaton goodoo.main: Request error: code=400, message=Invalid request format: code=400, message=EOF, internal=EOF - - -
+Performance: POST /api/users/create - 200 - 0 0.000 0.001
+2025-07-13 19:40:49,159 318874 INFO apexive-hackaton goodoo.main: POST /api/users/create - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 953.406µs - - -
+2025-07-13 19:41:01,844 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:41:01,844 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:41:01,845 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 339.321µs - - -
+2025-07-13 19:41:01,844 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:41:01,845 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 448.022µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.001
+2025-07-13 19:41:01,845 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 739.248µs - - -
+
+2025/07/13 19:41:01 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.374ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+2025-07-13 19:41:01,845 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.136859ms - - -
+
+2025/07/13 19:41:01 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.376ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:41:01.845' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:41:01,846 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.526388ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:41:01,846 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.909687ms - - -
+2025-07-13 19:41:23,385 318874 INFO apexive-hackaton goodoo.main: Request: POST /auth/login from ::1 (User-Agent: curl/8.5.0) - - -
+2025-07-13 19:41:23,385 318874 INFO apexive-hackaton goodoo.main: Login attempt for user: admin on database: apexive-hackaton - - -
+
+2025/07/13 19:41:23 [32m/home/zekki/hack-1/goodoo/models/user.go:154
+[0m[33m[0.448ms] [34;1m[rows:1][0m SELECT * FROM "res_users" WHERE (login = 'admin' AND active = true) AND "res_users"."deleted_at" IS NULL ORDER BY "res_users"."id" LIMIT 1
+2025-07-13 19:41:23,435 318874 INFO apexive-hackaton goodoo.main: User authenticated: admin (ID: 1) on database apexive-hackaton - - -
+2025-07-13 19:41:23,435 318874 INFO apexive-hackaton goodoo.main: User admin successfully authenticated - - -
+2025-07-13 19:41:23,435 318874 INFO apexive-hackaton goodoo.main: Request completed: POST /auth/login - Status: 200 - Duration: 49.984148ms - - -
+Performance: POST /auth/login - 200 - 0 0.000 0.050
+2025-07-13 19:41:23,435 318874 INFO apexive-hackaton goodoo.main: POST /auth/login - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 50.469623ms - - -
+2025-07-13 19:41:25,445 318874 INFO apexive-hackaton goodoo.main: Request: POST /api/users/create from ::1 (User-Agent: curl/8.5.0) - - -
+2025-07-13 19:41:25,446 318874 ERROR apexive-hackaton goodoo.main: Error binding request: code=400, message=EOF, internal=EOF - - -
+2025-07-13 19:41:25,446 318874 ERROR apexive-hackaton goodoo.main: Request failed: POST /api/users/create - Status: 200 - Duration: 957.488µs - Error: code=400, message=Invalid request format: code=400, message=EOF, internal=EOF - - -
+2025-07-13 19:41:25,446 318874 ERROR apexive-hackaton goodoo.main: Request error: code=400, message=Invalid request format: code=400, message=EOF, internal=EOF - - -
+Performance: POST /api/users/create - 200 - 0 0.000 0.001
+2025-07-13 19:41:25,446 318874 INFO apexive-hackaton goodoo.main: POST /api/users/create - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.365298ms - - -
+2025-07-13 19:41:32,076 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:41:32,077 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:41:32,077 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 124.646µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:41:32,076 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:41:32,077 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 411.866µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:41:32,077 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 542.063µs - - -
+
+2025/07/13 19:41:32 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.439ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+2025-07-13 19:41:32,078 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.352029ms - - -
+
+2025/07/13 19:41:32 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.465ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:41:32.078' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:41:32,078 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.86913ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:41:32,079 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 2.283207ms - - -
+2025-07-13 19:41:42,181 318874 INFO apexive-hackaton goodoo.main: Request: POST /api/settings from ::1 (User-Agent: curl/8.5.0) - - -
+2025-07-13 19:41:42,181 318874 INFO apexive-hackaton goodoo.main: Request completed: POST /api/settings - Status: 400 - Duration: 139.138µs - - -
+Performance: POST /api/settings - 400 - 0 0.000 0.000
+2025-07-13 19:41:42,181 318874 INFO apexive-hackaton goodoo.main: POST /api/settings - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 463.911µs - - -
+2025-07-13 19:42:00,312 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:42:00,312 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 141.905µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:42:00,312 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:42:00,313 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 453.834µs - - -
+2025-07-13 19:42:00,313 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 391.016µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.001
+2025-07-13 19:42:00,312 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:42:00,313 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 918.488µs - - -
+
+2025/07/13 19:42:00 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.379ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:42:00 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.357ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:42:00.314' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:42:00,314 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 2.14004ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:42:00,315 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 2.572367ms - - -
+2025-07-13 19:42:20,498 318874 INFO apexive-hackaton goodoo.main: Request: GET /dashboard from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+
+2025/07/13 19:42:20 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:121
+[0m[33m[0.617ms] [34;1m[rows:1][0m SELECT * FROM "res_users" WHERE "res_users"."id" = 1 AND "res_users"."deleted_at" IS NULL ORDER BY "res_users"."id" LIMIT 1
+2025-07-13 19:42:20,500 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /dashboard - Status: 200 - Duration: 1.58374ms - - -
+Performance: GET /dashboard - 200 - 0 0.000 0.002
+2025-07-13 19:42:20,500 318874 INFO apexive-hackaton goodoo.main: GET /dashboard - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 2.050975ms - - -
+2025-07-13 19:42:20,524 318874 INFO apexive-hackaton goodoo.main: Request: GET /static/css/dashboard.css from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:42:20,524 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /static/css/dashboard.css - Status: 304 - Duration: 260.373µs - - -
+Performance: GET /static/css/dashboard.css - 304 - 0 0.000 0.000
+2025-07-13 19:42:20,524 318874 INFO apexive-hackaton goodoo.main: Request: GET /static/js/dashboard.js from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:42:20,524 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /static/js/dashboard.js - Status: 304 - Duration: 358.145µs - - -
+Performance: GET /static/js/dashboard.js - 304 - 0 0.000 0.000
+2025-07-13 19:42:20,524 318874 INFO apexive-hackaton goodoo.main: GET /static/css/dashboard.css - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 713.066µs - - -
+2025-07-13 19:42:20,524 318874 INFO apexive-hackaton goodoo.main: GET /static/js/dashboard.js - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 873.062µs - - -
+2025-07-13 19:42:20,554 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:42:20,554 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:42:20,554 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:42:20,554 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 248.659µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:42:20,554 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 171.445µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:42:20,554 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 753.266µs - - -
+
+2025/07/13 19:42:20 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.468ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+2025-07-13 19:42:20,555 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.069848ms - - -
+
+2025/07/13 19:42:20 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.379ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:42:20.555' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:42:20,555 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.580274ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:42:20,555 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.947809ms - - -
+2025-07-13 19:42:25,159 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/users from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+
+2025/07/13 19:42:25 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:283
+[0m[33m[0.704ms] [34;1m[rows:1][0m SELECT * FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+2025-07-13 19:42:25,160 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/users - Status: 200 - Duration: 1.480253ms - - -
+Performance: GET /api/users - 200 - 0 0.000 0.002
+2025-07-13 19:42:25,161 318874 INFO apexive-hackaton goodoo.main: GET /api/users - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.807136ms - - -
+2025-07-13 19:42:50,803 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:42:50,803 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 128.243µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:42:50,804 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 423.086µs - - -
+2025-07-13 19:42:50,803 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:42:50,803 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:42:50,804 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 430.064µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.001
+2025-07-13 19:42:50,804 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 831.366µs - - -
+
+2025/07/13 19:42:50 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.407ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:42:50 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.298ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:42:50.805' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:42:50,805 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.901412ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:42:50,805 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 2.349279ms - - -
+2025-07-13 19:43:21,052 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:43:21,052 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:43:21,052 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 114.851µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:43:21,052 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:43:21,052 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 348.596µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:43:21,052 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 484.995µs - - -
+2025-07-13 19:43:21,053 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 877.61µs - - -
+
+2025/07/13 19:43:21 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.268ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:43:21 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.367ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:43:21.053' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:43:21,053 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.543762ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:43:21,054 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.794747ms - - -
+2025-07-13 19:43:21,688 318874 INFO apexive-hackaton goodoo.main: Request: POST /api/users/create from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:43:21,689 318874 ERROR apexive-hackaton goodoo.main: Error binding request: code=400, message=EOF, internal=EOF - - -
+2025-07-13 19:43:21,689 318874 ERROR apexive-hackaton goodoo.main: Request failed: POST /api/users/create - Status: 200 - Duration: 491.671µs - Error: code=400, message=Invalid request format: code=400, message=EOF, internal=EOF - - -
+2025-07-13 19:43:21,689 318874 ERROR apexive-hackaton goodoo.main: Request error: code=400, message=Invalid request format: code=400, message=EOF, internal=EOF - - -
+Performance: POST /api/users/create - 200 - 0 0.000 0.001
+2025-07-13 19:43:21,689 318874 INFO apexive-hackaton goodoo.main: POST /api/users/create - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 906.152µs - - -
+2025-07-13 19:43:26,420 318874 INFO apexive-hackaton goodoo.main: Request: POST /api/users/create from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:43:26,421 318874 ERROR apexive-hackaton goodoo.main: Error binding request: code=400, message=EOF, internal=EOF - - -
+2025-07-13 19:43:26,421 318874 ERROR apexive-hackaton goodoo.main: Request failed: POST /api/users/create - Status: 200 - Duration: 702.293µs - Error: code=400, message=Invalid request format: code=400, message=EOF, internal=EOF - - -
+2025-07-13 19:43:26,421 318874 ERROR apexive-hackaton goodoo.main: Request error: code=400, message=Invalid request format: code=400, message=EOF, internal=EOF - - -
+Performance: POST /api/users/create - 200 - 0 0.000 0.001
+2025-07-13 19:43:26,421 318874 INFO apexive-hackaton goodoo.main: POST /api/users/create - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.07203ms - - -
+2025-07-13 19:43:38,185 318874 INFO apexive-hackaton goodoo.main: Request: POST /api/users/create from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:43:38,185 318874 ERROR apexive-hackaton goodoo.main: Error binding request: code=400, message=EOF, internal=EOF - - -
+2025-07-13 19:43:38,185 318874 ERROR apexive-hackaton goodoo.main: Request failed: POST /api/users/create - Status: 200 - Duration: 662.386µs - Error: code=400, message=Invalid request format: code=400, message=EOF, internal=EOF - - -
+2025-07-13 19:43:38,185 318874 ERROR apexive-hackaton goodoo.main: Request error: code=400, message=Invalid request format: code=400, message=EOF, internal=EOF - - -
+Performance: POST /api/users/create - 200 - 0 0.000 0.001
+2025-07-13 19:43:38,186 318874 INFO apexive-hackaton goodoo.main: POST /api/users/create - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.195579ms - - -
+2025-07-13 19:43:44,720 318874 INFO apexive-hackaton goodoo.main: Request: POST /api/users/create from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:43:44,721 318874 ERROR apexive-hackaton goodoo.main: Error binding request: code=400, message=EOF, internal=EOF - - -
+2025-07-13 19:43:44,721 318874 ERROR apexive-hackaton goodoo.main: Request failed: POST /api/users/create - Status: 200 - Duration: 652.962µs - Error: code=400, message=Invalid request format: code=400, message=EOF, internal=EOF - - -
+2025-07-13 19:43:44,721 318874 ERROR apexive-hackaton goodoo.main: Request error: code=400, message=Invalid request format: code=400, message=EOF, internal=EOF - - -
+Performance: POST /api/users/create - 200 - 0 0.000 0.001
+2025-07-13 19:43:44,721 318874 INFO apexive-hackaton goodoo.main: POST /api/users/create - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.08669ms - - -
+2025-07-13 19:43:51,306 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:43:51,306 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 118.574µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:43:51,306 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:43:51,306 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 413.174µs - - -
+2025-07-13 19:43:51,306 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:43:51,306 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 391.579µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:43:51,307 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 889.678µs - - -
+
+2025/07/13 19:43:51 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.376ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:43:51 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.231ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:43:51.307' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:43:51,307 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.614145ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:43:51,308 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 2.043735ms - - -
+2025-07-13 19:44:19,529 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:44:19,529 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 138.352µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:44:19,529 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:44:19,529 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 207.503µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:44:19,529 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 490.725µs - - -
+2025-07-13 19:44:19,529 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:44:19,530 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 872.44µs - - -
+
+2025/07/13 19:44:19 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.340ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:44:19 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.240ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:44:19.531' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:44:19,531 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.860081ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:44:19,531 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 2.226575ms - - -
+2025-07-13 19:44:49,783 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:44:49,784 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:44:49,784 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:44:49,784 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 73.921µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.001
+2025-07-13 19:44:49,784 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 118.577µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.001
+2025-07-13 19:44:49,784 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 910.973µs - - -
+2025-07-13 19:44:49,785 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.364335ms - - -
+
+2025/07/13 19:44:49 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.358ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:44:49 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.222ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:44:49.785' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:44:49,786 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 2.125605ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:44:49,786 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 2.5296ms - - -
+2025-07-13 19:45:20,039 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:45:20,039 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:45:20,039 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:45:20,039 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 225.959µs - - -
+2025-07-13 19:45:20,039 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 85.326µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:45:20,040 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 648.292µs - - -
+2025-07-13 19:45:20,040 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 859.461µs - - -
+
+2025/07/13 19:45:20 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.332ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:45:20 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.232ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:45:20.04' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:45:20,041 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.472598ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.001
+2025-07-13 19:45:20,041 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.713549ms - - -
+2025-07-13 19:45:50,297 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:45:50,297 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 127.423µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:45:50,297 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:45:50,297 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:45:50,297 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 544.243µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.001
+2025-07-13 19:45:50,297 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 492.837µs - - -
+2025-07-13 19:45:50,298 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 997.509µs - - -
+
+2025/07/13 19:45:50 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.358ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:45:50 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.281ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:45:50.298' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:45:50,299 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.787228ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:45:50,299 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 2.181715ms - - -
+2025-07-13 19:46:20,553 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:46:20,553 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:46:20,553 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:46:20,553 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 421.206µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.001
+2025-07-13 19:46:20,553 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 196.936µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.001
+2025-07-13 19:46:20,553 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 792.94µs - - -
+2025-07-13 19:46:20,554 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.262773ms - - -
+
+2025/07/13 19:46:20 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.394ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:46:20 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.302ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:46:20.554' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:46:20,555 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.722984ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:46:20,555 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 2.076172ms - - -
+2025-07-13 19:47:34,199 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/users from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+
+2025/07/13 19:47:34 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:283
+[0m[33m[0.441ms] [34;1m[rows:1][0m SELECT * FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+2025-07-13 19:47:34,200 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/users - Status: 200 - Duration: 1.211781ms - - -
+Performance: GET /api/users - 200 - 0 0.000 0.001
+2025-07-13 19:47:34,201 318874 INFO apexive-hackaton goodoo.main: GET /api/users - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.616008ms - - -
+2025-07-13 19:47:34,636 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/social/stats from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:47:34,636 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/social/stats - Status: 200 - Duration: 117.557µs - - -
+Performance: GET /api/social/stats - 200 - 0 0.000 0.000
+2025-07-13 19:47:34,636 318874 INFO apexive-hackaton goodoo.main: GET /api/social/stats - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 409.658µs - - -
+2025-07-13 19:47:35,067 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/api from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:47:35,067 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/api - Status: 200 - Duration: 120.187µs - - -
+Performance: GET /api/metrics/api - 200 - 0 0.000 0.000
+2025-07-13 19:47:35,068 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/api - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 442.301µs - - -
+2025-07-13 19:47:35,898 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/social/stats from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:47:35,898 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/social/stats - Status: 200 - Duration: 91.463µs - - -
+Performance: GET /api/social/stats - 200 - 0 0.000 0.000
+2025-07-13 19:47:35,898 318874 INFO apexive-hackaton goodoo.main: GET /api/social/stats - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 418.961µs - - -
+2025-07-13 19:47:36,823 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/database/info from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:47:36,823 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/database/info - Status: 200 - Duration: 600.068µs - - -
+Performance: GET /api/database/info - 200 - 0 0.000 0.001
+2025-07-13 19:47:36,823 318874 INFO apexive-hackaton goodoo.main: GET /api/database/info - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 942.863µs - - -
+2025-07-13 19:47:37,449 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/logs/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:47:37,449 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/logs/recent - Status: 200 - Duration: 128.475µs - - -
+Performance: GET /api/logs/recent - 200 - 0 0.000 0.000
+2025-07-13 19:47:37,449 318874 INFO apexive-hackaton goodoo.main: GET /api/logs/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 411.152µs - - -
+2025-07-13 19:47:39,102 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/settings from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:47:39,102 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/settings - Status: 200 - Duration: 132.121µs - - -
+Performance: GET /api/settings - 200 - 0 0.000 0.000
+2025-07-13 19:47:39,102 318874 INFO apexive-hackaton goodoo.main: GET /api/settings - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 496.245µs - - -
+2025-07-13 19:47:40,412 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/settings from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:47:40,412 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/settings - Status: 200 - Duration: 100.653µs - - -
+Performance: GET /api/settings - 200 - 0 0.000 0.000
+2025-07-13 19:47:40,413 318874 INFO apexive-hackaton goodoo.main: GET /api/settings - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 403.204µs - - -
+2025-07-13 19:47:46,118 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:47:46,119 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 119.938µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:47:46,119 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 588.443µs - - -
+2025-07-13 19:47:46,120 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:47:46,120 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 127.279µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:47:46,120 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 468.638µs - - -
+2025-07-13 19:48:02,320 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:48:02,320 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:48:02,320 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 230.227µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:48:02,320 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:48:02,320 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 352.704µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:48:02,320 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 566.459µs - - -
+2025-07-13 19:48:02,320 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 888.188µs - - -
+
+2025/07/13 19:48:02 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.265ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:48:02 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.208ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:48:02.321' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:48:02,321 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.335434ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.001
+2025-07-13 19:48:02,321 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.617524ms - - -
+2025-07-13 19:48:05,836 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/api from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:48:05,836 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/api - Status: 200 - Duration: 366.04µs - - -
+Performance: GET /api/metrics/api - 200 - 0 0.000 0.000
+2025-07-13 19:48:05,836 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/api - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 736.263µs - - -
+2025-07-13 19:48:32,618 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:48:32,618 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 120.506µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:48:32,618 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:48:32,619 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 284.884µs - - -
+2025-07-13 19:48:32,619 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 430.93µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:48:32,618 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:48:32,619 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 822.447µs - - -
+
+2025/07/13 19:48:32 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.287ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:48:32 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.237ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:48:32.62' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:48:32,620 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.67129ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:48:32,620 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 2.063309ms - - -
+2025-07-13 19:49:02,975 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:49:02,975 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:49:02,975 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 73.527µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:49:02,975 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:49:02,976 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 254.258µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:49:02,976 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 360.758µs - - -
+2025-07-13 19:49:02,976 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 865.718µs - - -
+
+2025/07/13 19:49:02 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.304ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:49:02 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.353ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:49:02.976' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:49:02,977 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.592286ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:49:02,977 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 2.082154ms - - -
+2025-07-13 19:49:33,214 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:49:33,214 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 176.617µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:49:33,214 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:49:33,214 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:49:33,214 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 165.318µs - - -
+2025-07-13 19:49:33,214 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.35107ms - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.001
+2025-07-13 19:49:33,215 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.854956ms - - -
+
+2025/07/13 19:49:33 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.314ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:49:33 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.240ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:49:33.215' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:49:33,215 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.919846ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:49:33,216 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 2.322065ms - - -
+2025-07-13 19:50:01,409 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:50:01,409 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 130.542µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:50:01,409 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:50:01,409 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:50:01,409 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 397.325µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:50:01,409 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 463.799µs - - -
+2025-07-13 19:50:01,410 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 796.094µs - - -
+
+2025/07/13 19:50:01 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.281ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:50:01 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.305ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:50:01.41' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:50:01,410 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.392207ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.001
+2025-07-13 19:50:01,411 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.672364ms - - -
+2025-07-13 19:50:31,627 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:50:31,627 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:50:31,627 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 100.676µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:50:31,627 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:50:31,627 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 313.716µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:50:31,627 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 438.173µs - - -
+2025-07-13 19:50:31,628 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 796.16µs - - -
+
+2025/07/13 19:50:31 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.341ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:50:31 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.358ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:50:31.628' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:50:31,628 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.443173ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.001
+2025-07-13 19:50:31,629 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.757464ms - - -
+2025-07-13 19:51:01,878 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:51:01,878 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:51:01,878 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 192.648µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:51:01,878 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:51:01,878 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 242.548µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:51:01,878 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 494.278µs - - -
+
+2025/07/13 19:51:01 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.286ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+2025-07-13 19:51:01,878 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.073833ms - - -
+
+2025/07/13 19:51:01 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.301ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:51:01.879' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:51:01,879 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.384154ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.001
+2025-07-13 19:51:01,879 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.640518ms - - -
+2025-07-13 19:51:32,126 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:51:32,126 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:51:32,127 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 305.27µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:51:32,126 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:51:32,127 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 433.471µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.001
+2025-07-13 19:51:32,127 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 665.419µs - - -
+
+2025/07/13 19:51:32 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.308ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+2025-07-13 19:51:32,127 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.074222ms - - -
+
+2025/07/13 19:51:32 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.228ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:51:32.127' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:51:32,128 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.332682ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.001
+2025-07-13 19:51:32,128 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.592952ms - - -
+2025-07-13 19:52:02,418 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:52:02,418 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:52:02,418 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 560.76µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.001
+2025-07-13 19:52:02,418 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:52:02,418 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 714.307µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.001
+2025-07-13 19:52:02,418 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.232352ms - - -
+2025-07-13 19:52:02,419 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.525267ms - - -
+
+2025/07/13 19:52:02 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.393ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:52:02 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.290ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:52:02.419' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:52:02,420 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.858734ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:52:02,420 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 2.796144ms - - -
+2025-07-13 19:52:28,464 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/users from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+
+2025/07/13 19:52:28 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:283
+[0m[33m[0.340ms] [34;1m[rows:1][0m SELECT * FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+2025-07-13 19:52:28,465 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/users - Status: 200 - Duration: 1.155299ms - - -
+Performance: GET /api/users - 200 - 0 0.000 0.001
+2025-07-13 19:52:28,465 318874 INFO apexive-hackaton goodoo.main: GET /api/users - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.512799ms - - -
+2025-07-13 19:52:29,061 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/social/stats from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:52:29,061 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/social/stats - Status: 200 - Duration: 117.034µs - - -
+Performance: GET /api/social/stats - 200 - 0 0.000 0.000
+2025-07-13 19:52:29,061 318874 INFO apexive-hackaton goodoo.main: GET /api/social/stats - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 441.332µs - - -
+2025-07-13 19:52:29,744 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/api from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:52:29,744 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/api - Status: 200 - Duration: 135.592µs - - -
+Performance: GET /api/metrics/api - 200 - 0 0.000 0.000
+2025-07-13 19:52:29,744 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/api - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 761.516µs - - -
+2025-07-13 19:52:30,103 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/database/info from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:52:30,103 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/database/info - Status: 200 - Duration: 650.907µs - - -
+Performance: GET /api/database/info - 200 - 0 0.000 0.001
+2025-07-13 19:52:30,104 318874 INFO apexive-hackaton goodoo.main: GET /api/database/info - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.053429ms - - -
+2025-07-13 19:52:30,466 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/logs/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:52:30,466 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/logs/recent - Status: 200 - Duration: 98.428µs - - -
+Performance: GET /api/logs/recent - 200 - 0 0.000 0.000
+2025-07-13 19:52:30,467 318874 INFO apexive-hackaton goodoo.main: GET /api/logs/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 384.303µs - - -
+2025-07-13 19:52:30,803 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/settings from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:52:30,804 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/settings - Status: 200 - Duration: 98.72µs - - -
+Performance: GET /api/settings - 200 - 0 0.000 0.000
+2025-07-13 19:52:30,804 318874 INFO apexive-hackaton goodoo.main: GET /api/settings - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 389.309µs - - -
+2025-07-13 19:52:32,707 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:52:32,707 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 102.415µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:52:32,707 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:52:32,707 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:52:32,707 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 341.078µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:52:32,707 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 403.458µs - - -
+2025-07-13 19:52:32,708 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 800.234µs - - -
+
+2025/07/13 19:52:32 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.311ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:52:32 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.280ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:52:32.708' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:52:32,708 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.543701ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:52:32,709 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.934134ms - - -
+2025-07-13 19:53:02,970 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:53:02,970 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 131.265µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:53:02,970 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:53:02,970 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:53:02,970 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 331.018µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:53:02,971 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 483.798µs - - -
+2025-07-13 19:53:02,971 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 916.55µs - - -
+
+2025/07/13 19:53:02 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.299ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:53:02 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.318ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:53:02.971' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:53:02,972 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.547513ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:53:02,972 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.835431ms - - -
+2025-07-13 19:53:07,396 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/users from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+
+2025/07/13 19:53:07 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:283
+[0m[33m[0.265ms] [34;1m[rows:1][0m SELECT * FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+2025-07-13 19:53:07,397 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/users - Status: 200 - Duration: 1.03026ms - - -
+Performance: GET /api/users - 200 - 0 0.000 0.001
+2025-07-13 19:53:07,398 318874 INFO apexive-hackaton goodoo.main: GET /api/users - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.350529ms - - -
+2025-07-13 19:53:07,816 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/social/stats from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:53:07,816 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/social/stats - Status: 200 - Duration: 96.294µs - - -
+Performance: GET /api/social/stats - 200 - 0 0.000 0.000
+2025-07-13 19:53:07,816 318874 INFO apexive-hackaton goodoo.main: GET /api/social/stats - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 388.655µs - - -
+2025-07-13 19:53:08,265 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/api from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:53:08,265 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/api - Status: 200 - Duration: 97.987µs - - -
+Performance: GET /api/metrics/api - 200 - 0 0.000 0.000
+2025-07-13 19:53:08,265 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/api - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 391.462µs - - -
+2025-07-13 19:53:08,671 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/database/info from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:53:08,671 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/database/info - Status: 200 - Duration: 659.483µs - - -
+Performance: GET /api/database/info - 200 - 0 0.000 0.001
+2025-07-13 19:53:08,671 318874 INFO apexive-hackaton goodoo.main: GET /api/database/info - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.067437ms - - -
+2025-07-13 19:53:09,053 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/logs/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:53:09,053 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/logs/recent - Status: 200 - Duration: 112.489µs - - -
+Performance: GET /api/logs/recent - 200 - 0 0.000 0.000
+2025-07-13 19:53:09,053 318874 INFO apexive-hackaton goodoo.main: GET /api/logs/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 582.172µs - - -
+2025-07-13 19:53:09,441 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/settings from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:53:09,441 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/settings - Status: 200 - Duration: 119.489µs - - -
+Performance: GET /api/settings - 200 - 0 0.000 0.000
+2025-07-13 19:53:09,442 318874 INFO apexive-hackaton goodoo.main: GET /api/settings - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 494.645µs - - -
+2025-07-13 19:53:18,458 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/users from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+
+2025/07/13 19:53:18 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:283
+[0m[33m[0.290ms] [34;1m[rows:1][0m SELECT * FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+2025-07-13 19:53:18,459 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/users - Status: 200 - Duration: 1.065857ms - - -
+Performance: GET /api/users - 200 - 0 0.000 0.001
+2025-07-13 19:53:18,459 318874 INFO apexive-hackaton goodoo.main: GET /api/users - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.391753ms - - -
+2025-07-13 19:53:28,260 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/social/stats from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:53:28,260 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/social/stats - Status: 200 - Duration: 92.064µs - - -
+Performance: GET /api/social/stats - 200 - 0 0.000 0.000
+2025-07-13 19:53:28,260 318874 INFO apexive-hackaton goodoo.main: GET /api/social/stats - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 523.628µs - - -
+2025-07-13 19:53:28,697 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/api from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:53:28,697 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/api - Status: 200 - Duration: 94.655µs - - -
+Performance: GET /api/metrics/api - 200 - 0 0.000 0.000
+2025-07-13 19:53:28,697 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/api - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 433.749µs - - -
+2025-07-13 19:53:31,137 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/database/info from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:53:31,138 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/database/info - Status: 200 - Duration: 584.294µs - - -
+Performance: GET /api/database/info - 200 - 0 0.000 0.001
+2025-07-13 19:53:31,138 318874 INFO apexive-hackaton goodoo.main: GET /api/database/info - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 925.838µs - - -
+2025-07-13 19:53:31,561 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/logs/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:53:31,561 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/logs/recent - Status: 200 - Duration: 103.471µs - - -
+Performance: GET /api/logs/recent - 200 - 0 0.000 0.000
+2025-07-13 19:53:31,561 318874 INFO apexive-hackaton goodoo.main: GET /api/logs/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 406.3µs - - -
+2025-07-13 19:53:32,156 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/settings from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:53:32,156 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/settings - Status: 200 - Duration: 95.1µs - - -
+Performance: GET /api/settings - 200 - 0 0.000 0.000
+2025-07-13 19:53:32,156 318874 INFO apexive-hackaton goodoo.main: GET /api/settings - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 373.259µs - - -
+2025-07-13 19:53:32,892 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/users from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+
+2025/07/13 19:53:32 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:283
+[0m[33m[0.272ms] [34;1m[rows:1][0m SELECT * FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+2025-07-13 19:53:32,893 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/users - Status: 200 - Duration: 935.416µs - - -
+Performance: GET /api/users - 200 - 0 0.000 0.001
+2025-07-13 19:53:32,893 318874 INFO apexive-hackaton goodoo.main: GET /api/users - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.225567ms - - -
+2025-07-13 19:53:33,227 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:53:33,227 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:53:33,227 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 283.974µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:53:33,227 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:53:33,227 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 428.534µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:53:33,227 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 647.899µs - - -
+
+2025/07/13 19:53:33 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.349ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+2025-07-13 19:53:33,228 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.237004ms - - -
+
+2025/07/13 19:53:33 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.377ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:53:33.228' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:53:33,228 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.369962ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.001
+2025-07-13 19:53:33,228 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.684767ms - - -
+2025-07-13 19:54:01,392 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:54:01,392 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 104.59µs - - -
+2025-07-13 19:54:01,392 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:54:01,392 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:54:01,392 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 324.56µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:54:01,392 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 345.423µs - - -
+2025-07-13 19:54:01,392 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 645.685µs - - -
+
+2025/07/13 19:54:01 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.304ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:54:01 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.242ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:54:01.393' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:54:01,393 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.337412ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.001
+2025-07-13 19:54:01,393 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.619932ms - - -
+2025-07-13 19:57:10,533 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:57:10,534 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:57:10,534 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 122.569µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:57:10,534 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 506.162µs - - -
+2025-07-13 19:57:10,534 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:57:10,534 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 81.152µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+
+2025/07/13 19:57:10 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.400ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+2025-07-13 19:57:10,534 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 374.638µs - - -
+
+2025/07/13 19:57:10 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.256ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:57:10.534' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:57:10,535 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.718812ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:57:10,535 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.989285ms - - -
+2025-07-13 19:57:41,015 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:57:41,016 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 133.244µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:57:41,016 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:57:41,016 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 540.409µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.001
+2025-07-13 19:57:41,016 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:57:41,016 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 712.848µs - - -
+2025-07-13 19:57:41,016 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 976.311µs - - -
+
+2025/07/13 19:57:41 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.349ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:57:41 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.231ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:57:41.017' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:57:41,018 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 2.24772ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:57:41,018 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 2.668347ms - - -
+2025-07-13 19:58:11,145 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:58:11,145 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 152.499µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:58:11,145 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:58:11,146 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 490.954µs - - -
+2025-07-13 19:58:11,146 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 363.368µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 19:58:11,145 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+
+2025/07/13 19:58:11 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.266ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:58:11 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.218ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:58:11.147' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:58:11,147 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.697715ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:58:11,147 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 2.019774ms - - -
+2025-07-13 19:58:11,147 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 2.265802ms - - -
+2025-07-13 19:58:41,220 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:58:41,220 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 126.683µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 19:58:41,220 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:58:41,220 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 425.892µs - - -
+2025-07-13 19:58:41,220 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 315.877µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.001
+2025-07-13 19:58:41,220 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 19:58:41,220 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 963.504µs - - -
+
+2025/07/13 19:58:41 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:144
+[0m[33m[0.353ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE "res_users"."deleted_at" IS NULL
+
+2025/07/13 19:58:41 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:148
+[0m[33m[0.289ms] [34;1m[rows:1][0m SELECT count(*) FROM "res_users" WHERE (write_date > '2025-07-12 19:58:41.221' AND active = true) AND "res_users"."deleted_at" IS NULL
+2025-07-13 19:58:41,222 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics - Status: 200 - Duration: 1.971442ms - - -
+Performance: GET /api/metrics - 200 - 0 0.000 0.002
+2025-07-13 19:58:41,222 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 2.365509ms - - -
+2025-07-13 20:02:51,567 318874 INFO apexive-hackaton goodoo.main: Request: GET /dashboard from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+
+2025/07/13 20:02:51 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:121
+[0m[33m[0.663ms] [34;1m[rows:1][0m SELECT * FROM "res_users" WHERE "res_users"."id" = 1 AND "res_users"."deleted_at" IS NULL ORDER BY "res_users"."id" LIMIT 1
+2025-07-13 20:02:51,571 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /dashboard - Status: 200 - Duration: 3.940117ms - - -
+Performance: GET /dashboard - 200 - 0 0.000 0.004
+2025-07-13 20:02:51,571 318874 INFO apexive-hackaton goodoo.main: GET /dashboard - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 4.363453ms - - -
+2025-07-13 20:02:51,591 318874 INFO apexive-hackaton goodoo.main: Request: GET /static/css/style.css from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 20:02:51,591 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /static/css/style.css - Status: 304 - Duration: 157.327µs - - -
+Performance: GET /static/css/style.css - 304 - 0 0.000 0.000
+2025-07-13 20:02:51,591 318874 INFO apexive-hackaton goodoo.main: Request: GET /static/js/dashboard.js from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 20:02:51,591 318874 INFO apexive-hackaton goodoo.main: Request: GET /static/css/dashboard.css from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 20:02:51,592 318874 INFO apexive-hackaton goodoo.main: GET /static/css/style.css - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 519.706µs - - -
+2025-07-13 20:02:51,594 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /static/js/dashboard.js - Status: 200 - Duration: 2.234837ms - - -
+Performance: GET /static/js/dashboard.js - 200 - 0 0.000 0.002
+2025-07-13 20:02:51,594 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /static/css/dashboard.css - Status: 200 - Duration: 2.259572ms - - -
+Performance: GET /static/css/dashboard.css - 200 - 0 0.000 0.002
+2025-07-13 20:02:51,594 318874 INFO apexive-hackaton goodoo.main: GET /static/js/dashboard.js - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 2.65936ms - - -
+2025-07-13 20:02:51,594 318874 INFO apexive-hackaton goodoo.main: GET /static/css/dashboard.css - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 3.068911ms - - -
+2025-07-13 20:02:51,623 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 20:02:51,623 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 167.434µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 20:02:51,623 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 20:02:51,624 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 200.564µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 20:02:51,624 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.058358ms - - -
+2025-07-13 20:02:51,625 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.227821ms - - -
+2025-07-13 20:03:05,791 318874 INFO apexive-hackaton goodoo.main: Request: GET /dashboard from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+
+2025/07/13 20:03:05 [32m/home/zekki/hack-1/goodoo/handlers/dashboard.go:121
+[0m[33m[0.418ms] [34;1m[rows:1][0m SELECT * FROM "res_users" WHERE "res_users"."id" = 1 AND "res_users"."deleted_at" IS NULL ORDER BY "res_users"."id" LIMIT 1
+2025-07-13 20:03:05,792 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /dashboard - Status: 200 - Duration: 1.302932ms - - -
+Performance: GET /dashboard - 200 - 0 0.000 0.001
+2025-07-13 20:03:05,792 318874 INFO apexive-hackaton goodoo.main: GET /dashboard - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 1.694143ms - - -
+2025-07-13 20:03:05,812 318874 INFO apexive-hackaton goodoo.main: Request: GET /static/css/dashboard.css from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 20:03:05,812 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /static/css/dashboard.css - Status: 304 - Duration: 141.339µs - - -
+Performance: GET /static/css/dashboard.css - 304 - 0 0.000 0.000
+2025-07-13 20:03:05,812 318874 INFO apexive-hackaton goodoo.main: GET /static/css/dashboard.css - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 540.078µs - - -
+2025-07-13 20:03:05,812 318874 INFO apexive-hackaton goodoo.main: Request: GET /static/js/dashboard.js from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 20:03:05,813 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /static/js/dashboard.js - Status: 304 - Duration: 91.147µs - - -
+Performance: GET /static/js/dashboard.js - 304 - 0 0.000 0.000
+2025-07-13 20:03:05,813 318874 INFO apexive-hackaton goodoo.main: GET /static/js/dashboard.js - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 535.444µs - - -
+2025-07-13 20:03:05,837 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 20:03:05,837 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 140.799µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 20:03:05,837 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 20:03:05,837 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 488.448µs - - -
+2025-07-13 20:03:05,837 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 339.145µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 20:03:05,838 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 951.88µs - - -
+2025-07-13 20:03:36,013 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 20:03:36,013 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 152.349µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 20:03:36,013 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 20:03:36,013 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 322.367µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 20:03:36,013 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 473.672µs - - -
+2025-07-13 20:03:36,014 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 872.33µs - - -
+2025-07-13 20:04:07,174 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 20:04:07,175 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 126.341µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+2025-07-13 20:04:07,174 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 20:04:07,175 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 285.204µs - - -
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 20:04:07,175 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 446.785µs - - -
+2025-07-13 20:04:07,175 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 843.26µs - - -
+2025-07-13 20:04:36,745 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/metrics/charts from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 20:04:36,745 318874 INFO apexive-hackaton goodoo.main: Request: GET /api/activity/recent from ::1 (User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36) - - -
+2025-07-13 20:04:36,745 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/metrics/charts - Status: 200 - Duration: 117.872µs - - -
+2025-07-13 20:04:36,745 318874 INFO apexive-hackaton goodoo.main: Request completed: GET /api/activity/recent - Status: 200 - Duration: 65.717µs - - -
+Performance: GET /api/metrics/charts - 200 - 0 0.000 0.000
+Performance: GET /api/activity/recent - 200 - 0 0.000 0.000
+2025-07-13 20:04:36,745 318874 INFO apexive-hackaton goodoo.main: GET /api/metrics/charts - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 436.629µs - - -
+2025-07-13 20:04:36,746 318874 INFO apexive-hackaton goodoo.main: GET /api/activity/recent - User: admin (ID: 1) - DB: apexive-hackaton - Duration: 652.242µs - - -
+signal: terminated

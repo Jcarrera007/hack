@@ -83,6 +83,10 @@ func (h *AuthHandler) Logout(c echo.Context) error {
 	}
 
 	if !req.IsAuthenticated() {
+		// If not authenticated, redirect to login for GET requests
+		if c.Request().Method == "GET" {
+			return c.Redirect(http.StatusFound, "/login")
+		}
 		return echo.NewHTTPError(http.StatusBadRequest, "Not authenticated")
 	}
 
@@ -91,6 +95,12 @@ func (h *AuthHandler) Logout(c echo.Context) error {
 
 	req.Logger.InfoCtx(req.Context, "User %s logged out", oldLogin)
 
+	// For GET requests (from dashboard logout link), redirect to login page
+	if c.Request().Method == "GET" {
+		return c.Redirect(http.StatusFound, "/login")
+	}
+
+	// For POST requests (API calls), return JSON response
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"success": true,
 		"message": "Logged out successfully",

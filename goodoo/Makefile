@@ -8,6 +8,13 @@ build: templ
 run: build
 	./bin/goodoo
 
+# Stop the application
+stop:
+	pkill goodoo || true
+
+# Restart the application
+restart: stop run
+
 # Development mode with auto-reload
 dev: templ
 	go run .

@@ -1,0 +1,22 @@
+{
+  "sid": "a05b63eb1cb7f587087f75ff3515c547f9d9f43fc8ffce887a27f0e0cb7982c0",
+  "data": {},
+  "created_at": "2025-07-13T19:36:47.85283654-04:00",
+  "last_accessed": "2025-07-13T19:36:47.911154819-04:00",
+  "db_name": "apexive-hackaton",
+  "user_id": 1,
+  "login": "admin",
+  "context": {
+    "db_name": "apexive-hackaton",
+    "lang": "en_US",
+    "login": "admin",
+    "method": "POST",
+    "path": "/api/users/create",
+    "remote_addr": "::1",
+    "request_id": "1752449807911150113-a05b63eb",
+    "timezone": "UTC",
+    "tz": "UTC",
+    "user_agent": "curl/8.5.0",
+    "user_id": 1
+  }
+}

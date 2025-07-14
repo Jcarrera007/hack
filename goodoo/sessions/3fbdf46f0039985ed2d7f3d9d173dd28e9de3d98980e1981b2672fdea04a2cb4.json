@@ -1,0 +1,22 @@
+{
+  "sid": "3fbdf46f0039985ed2d7f3d9d173dd28e9de3d98980e1981b2672fdea04a2cb4",
+  "data": {},
+  "created_at": "2025-07-13T17:10:29.094771931-04:00",
+  "last_accessed": "2025-07-13T17:10:40.658394776-04:00",
+  "db_name": "apexive-hackaton",
+  "user_id": 1,
+  "login": "admin",
+  "context": {
+    "db_name": "apexive-hackaton",
+    "lang": "en_US",
+    "login": "admin",
+    "method": "GET",
+    "path": "/api/metrics/charts",
+    "remote_addr": "::1",
+    "request_id": "1752441040658390453-3fbdf46f",
+    "timezone": "UTC",
+    "tz": "UTC",
+    "user_agent": "curl/8.5.0",
+    "user_id": 1
+  }
+}
